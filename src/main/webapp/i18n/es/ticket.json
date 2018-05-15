@@ -1,0 +1,26 @@
+
+{
+    "ticketApp": {
+        "ticket" : {
+            "home": {
+                "title": "Tickets",
+                "createLabel": "Crear nuevo Ticket",
+                "createOrEditLabel": "Crear o editar Ticket",
+                "search": "Search for Ticket"
+            },
+            "created": "Un nuevo Ticket ha sido creado con el identificador {{ param }}",
+            "updated": "Un Ticket ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Ticket ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Ticket {{ id }}?"
+            },
+            "detail": {
+                "title": "Ticket"
+            },
+            "ticket_name": "Ticket Name",
+            "ticket_desc": "Ticket Desc",
+            "type": "Type",
+            "status": "Status"
+        }
+    }
+}

@@ -1,0 +1,48 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTicketLabel" jhiTranslate="ticketApp.ticket.home.createOrEditLabel">Create or edit a Ticket</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!ticket.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="ticket.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.ticket.ticket_name" for="field_ticket_name">Ticket Name</label>
+            <input type="text" class="form-control" name="ticket_name" id="field_ticket_name"
+                [(ngModel)]="ticket.ticket_name" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.ticket.ticket_desc" for="field_ticket_desc">Ticket Desc</label>
+            <input type="text" class="form-control" name="ticket_desc" id="field_ticket_desc"
+                [(ngModel)]="ticket.ticket_desc" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.ticket.type" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                [(ngModel)]="ticket.type" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.ticket.status" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="ticket.status" id="field_status" >
+                <option value="OPEN">{{'ticketApp.Status.OPEN' | translate}}</option>
+                <option value="PROGRESS">{{'ticketApp.Status.PROGRESS' | translate}}</option>
+                <option value="CLOSE">{{'ticketApp.Status.CLOSE' | translate}}</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

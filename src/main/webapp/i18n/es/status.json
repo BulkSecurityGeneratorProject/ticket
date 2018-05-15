@@ -1,0 +1,10 @@
+{
+    "ticketApp": {
+        "Status" : {
+            "null": "",
+            "OPEN": "OPEN",
+            "PROGRESS": "PROGRESS",
+            "CLOSE": "CLOSE"
+        }
+    }
+}
