@@ -1,0 +1,42 @@
+
+entity Equipment{
+equipmentId String required,
+title String,
+equipmentDescription String,
+range String,
+leastCount String,
+unitOfMeasure String,
+make String,
+serviceFrquency String,
+servicedDate LocalDate,
+nextServicedDate LocalDate,
+calibrationCertificateReferenceNo String,
+equipmentState State,
+serviceStatus Status,
+department String,
+calibrationCertificateScannedCopy Blob,
+qualityCertificateScannedCopy Blob,
+assignedBy String,
+approvedBy String,
+remarks String
+}
+enum State{
+ACTIVE,INACTIVE
+}
+enum Status{
+SERVICED,INTERNAL,EXTERNAL
+}
+entity History{
+title String,
+leastCount String,
+make String,
+servicedDate LocalDate,
+remarks String
+}
+relationship OneToMany {
+  Equipment{history} to History{equipment(equipmentId)}
+}
+
+dto Equipment,History with mapstruct
+paginate Equipment,History with pager
+service  Equipment,History with serviceClass
