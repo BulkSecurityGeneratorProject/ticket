@@ -1,0 +1,112 @@
+entity Project{
+name String maxlength(100),
+description TextBlob,
+projectStatus ProjectStatus,
+startDate LocalDate,
+endDate LocalDate,
+owner String maxlength(100)
+}
+enum ProjectStatus{
+ACTIVE,INACTIVE,CLOSED
+}
+
+relationship ManyToOne {
+	Project{assignedTo(login)} to User{project(owner)}
+}
+
+
+entity Tasks{
+name String maxlength(100),
+code String maxlength(20),
+level Integer,
+taskStatus TaskStatus,
+start String,
+end String, 
+duration Integer,
+startIsMilestone Boolean,
+endIsMilestone Boolean,
+depends String maxlength(15),
+description String,
+progress Integer,
+selectedRow Integer,
+canWrite Boolean,
+canWriteOnParent Boolean
+}
+
+
+enum TaskStatus{
+STATUS_ACTIVE, STATUS_DONE, STATUS_FAILED, STATUS_SUSPENDED, STATUS_UNDEFINED
+}
+
+entity Resources{
+name String maxlength(100)
+}
+
+entity Roles{
+name String maxlength(100)
+}
+ entity Assigs{
+ resourceId Long, 
+ roleId Long,
+ taskId Long,
+ effort Long 
+ }
+ relationship OneToMany {
+ Project{tasks} to Tasks{project(name) required}
+ Tasks{roles} to Roles{tasks}
+ Tasks{resources} to Resources{tasks}
+ 
+}
+ relationship OneToOne{
+Resources{user(login)} to User
+ }
+ relationship ManyToOne{
+ Tasks{assigs} to Assigs{tasks(taskId)}
+  Resources{assigs} to Assigs{resources(resourceId)}
+  Roles{assigs} to Assigs{roles(roleId)}
+ }
+ 
+ entity File{
+ documentName String,
+ documentOneDetails String,
+ documentOne Blob,
+ documentTwoDetails String,
+ documentTwo Blob,
+ documentThreeDetails String
+ documentThree Blob,
+ 
+ }
+ 
+ relationship OneToMany{
+ Project{document} to File{project(name)}
+ Tasks{document} to File{tasks}
+ }
+
+
+
+entity RaiseTicket {
+	title String required,
+	description String,   
+    openDate LocalDate,
+	dueDate LocalDate,
+	issueStatus IssueStatus,
+    attachScreenshot Blob,
+    remarks String maxlength(200)
+}
+
+enum IssueStatus{
+NEW,IN_PROGRESS,PENDING,RESOLVED,CLOSED
+}
+
+relationship ManyToOne {
+	RaiseTicket{project(name)} to Project{issueTicket}
+}
+
+relationship ManyToOne {
+	RaiseTicket{assignedTo(login)} to User{ticket}
+}
+
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass
