@@ -1,0 +1,38 @@
+
+<div *ngIf="roles">
+    <h2><span jhiTranslate="ticketApp.roles.detail.title">Roles</span> {{roles.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ticketApp.roles.name">Name</span></dt>
+        <dd>
+            <span>{{roles.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.roles.assigs">Assigs</span></dt>
+        <dd>
+            <div *ngIf="roles.assigsId">
+                <a [routerLink]="['/assigs', roles.assigsId]">{{roles.assigsId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.roles.tasks">Tasks</span></dt>
+        <dd>
+            <div *ngIf="roles.tasksId">
+                <a [routerLink]="['/tasks', roles.tasksId]">{{roles.tasksId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'roles/'+ roles.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

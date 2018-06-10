@@ -1,0 +1,12 @@
+{
+    "ticketApp": {
+        "TaskStatus" : {
+            "null": "",
+            "STATUS_ACTIVE": "STATUS_ACTIVE",
+            "STATUS_DONE": "STATUS_DONE",
+            "STATUS_FAILED": "STATUS_FAILED",
+            "STATUS_SUSPENDED": "STATUS_SUSPENDED",
+            "STATUS_UNDEFINED": "STATUS_UNDEFINED"
+        }
+    }
+}

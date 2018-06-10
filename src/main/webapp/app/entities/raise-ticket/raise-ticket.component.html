@@ -1,0 +1,104 @@
+<div>
+    <h2>
+        <span jhiTranslate="ticketApp.raiseTicket.home.title">Raise Tickets</span>
+        <button class="btn btn-primary float-right jh-create-entity create-raise-ticket" [routerLink]="['/', { outlets: { popup: ['raise-ticket-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="ticketApp.raiseTicket.home.createLabel">
+            Create new Raise Ticket
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'ticketApp.raiseTicket.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="raiseTickets">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="title"><span jhiTranslate="ticketApp.raiseTicket.title">Title</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span jhiTranslate="ticketApp.raiseTicket.description">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="openDate"><span jhiTranslate="ticketApp.raiseTicket.openDate">Open Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dueDate"><span jhiTranslate="ticketApp.raiseTicket.dueDate">Due Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="issueStatus"><span jhiTranslate="ticketApp.raiseTicket.issueStatus">Issue Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="attachScreenshot"><span jhiTranslate="ticketApp.raiseTicket.attachScreenshot">Attach Screenshot</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="remarks"><span jhiTranslate="ticketApp.raiseTicket.remarks">Remarks</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="projectName"><span jhiTranslate="ticketApp.raiseTicket.project">Project</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="assignedToLogin"><span jhiTranslate="ticketApp.raiseTicket.assignedTo">Assigned To</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let raiseTicket of raiseTickets ;trackBy: trackId">
+                <td><a [routerLink]="['../raise-ticket', raiseTicket.id ]">{{raiseTicket.id}}</a></td>
+                <td>{{raiseTicket.title}}</td>
+                <td>{{raiseTicket.description}}</td>
+                <td>{{raiseTicket.openDate | date:'mediumDate'}}</td>
+                <td>{{raiseTicket.dueDate | date:'mediumDate'}}</td>
+                <td jhiTranslate="{{'ticketApp.IssueStatus.' + raiseTicket.issueStatus}}">{{raiseTicket.issueStatus}}</td>
+                <td>
+                    <a *ngIf="raiseTicket.attachScreenshot" (click)="openFile(raiseTicket.attachScreenshotContentType, raiseTicket.attachScreenshot)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="raiseTicket.attachScreenshot">{{raiseTicket.attachScreenshotContentType}}, {{byteSize(raiseTicket.attachScreenshot)}}</span>
+                </td>
+                <td>{{raiseTicket.remarks}}</td>
+                <td>
+                    <div *ngIf="raiseTicket.projectId">
+                        <a [routerLink]="['../project', raiseTicket.projectId  ]" >{{raiseTicket.projectName}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{raiseTicket.assignedToLogin}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../raise-ticket', raiseTicket.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'raise-ticket/'+ raiseTicket.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'raise-ticket/'+ raiseTicket.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="raiseTickets && raiseTickets.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

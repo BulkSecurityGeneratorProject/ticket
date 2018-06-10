@@ -1,0 +1,31 @@
+
+{
+    "ticketApp": {
+        "raiseTicket" : {
+            "home": {
+                "title": "Raise Tickets",
+                "createLabel": "Crear nuevo Raise Ticket",
+                "createOrEditLabel": "Crear o editar Raise Ticket",
+                "search": "Search for Raise Ticket"
+            },
+            "created": "Un nuevo Raise Ticket ha sido creado con el identificador {{ param }}",
+            "updated": "Un Raise Ticket ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Raise Ticket ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Raise Ticket {{ id }}?"
+            },
+            "detail": {
+                "title": "Raise Ticket"
+            },
+            "title": "Title",
+            "description": "Description",
+            "openDate": "Open Date",
+            "dueDate": "Due Date",
+            "issueStatus": "Issue Status",
+            "attachScreenshot": "Attach Screenshot",
+            "remarks": "Remarks",
+            "project": "Project",
+            "assignedTo": "Assigned To"
+        }
+    }
+}

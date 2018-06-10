@@ -1,0 +1,26 @@
+
+{
+    "ticketApp": {
+        "resources" : {
+            "home": {
+                "title": "Resources",
+                "createLabel": "Crear nuevo Resources",
+                "createOrEditLabel": "Crear o editar Resources",
+                "search": "Search for Resources"
+            },
+            "created": "Un nuevo Resources ha sido creado con el identificador {{ param }}",
+            "updated": "Un Resources ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Resources ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Resources {{ id }}?"
+            },
+            "detail": {
+                "title": "Resources"
+            },
+            "name": "Name",
+            "user": "User",
+            "assigs": "Assigs",
+            "tasks": "Tasks"
+        }
+    }
+}

@@ -1,0 +1,42 @@
+
+<div *ngIf="resources">
+    <h2><span jhiTranslate="ticketApp.resources.detail.title">Resources</span> {{resources.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ticketApp.resources.name">Name</span></dt>
+        <dd>
+            <span>{{resources.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.resources.user">User</span></dt>
+        <dd>
+            {{resources.userLogin}}
+        </dd>
+        <dt><span jhiTranslate="ticketApp.resources.assigs">Assigs</span></dt>
+        <dd>
+            <div *ngIf="resources.assigsId">
+                <a [routerLink]="['/assigs', resources.assigsId]">{{resources.assigsId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.resources.tasks">Tasks</span></dt>
+        <dd>
+            <div *ngIf="resources.tasksId">
+                <a [routerLink]="['/tasks', resources.tasksId]">{{resources.tasksId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'resources/'+ resources.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

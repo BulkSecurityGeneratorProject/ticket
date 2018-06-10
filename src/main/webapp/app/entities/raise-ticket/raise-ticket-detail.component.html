@@ -1,0 +1,63 @@
+
+<div *ngIf="raiseTicket">
+    <h2><span jhiTranslate="ticketApp.raiseTicket.detail.title">Raise Ticket</span> {{raiseTicket.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ticketApp.raiseTicket.title">Title</span></dt>
+        <dd>
+            <span>{{raiseTicket.title}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.raiseTicket.description">Description</span></dt>
+        <dd>
+            <span>{{raiseTicket.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.raiseTicket.openDate">Open Date</span></dt>
+        <dd>
+            <span>{{raiseTicket.openDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.raiseTicket.dueDate">Due Date</span></dt>
+        <dd>
+            <span>{{raiseTicket.dueDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.raiseTicket.issueStatus">Issue Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ticketApp.IssueStatus.' + raiseTicket.issueStatus}}">{{raiseTicket.issueStatus}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.raiseTicket.attachScreenshot">Attach Screenshot</span></dt>
+        <dd>
+            <div *ngIf="raiseTicket.attachScreenshot">
+                <a (click)="openFile(raiseTicket.attachScreenshotContentType, raiseTicket.attachScreenshot)" jhiTranslate="entity.action.open">open</a>
+                {{raiseTicket.attachScreenshotContentType}}, {{byteSize(raiseTicket.attachScreenshot)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.raiseTicket.remarks">Remarks</span></dt>
+        <dd>
+            <span>{{raiseTicket.remarks}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.raiseTicket.project">Project</span></dt>
+        <dd>
+            <div *ngIf="raiseTicket.projectId">
+                <a [routerLink]="['/project', raiseTicket.projectId]">{{raiseTicket.projectName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.raiseTicket.assignedTo">Assigned To</span></dt>
+        <dd>
+            {{raiseTicket.assignedToLogin}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'raise-ticket/'+ raiseTicket.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

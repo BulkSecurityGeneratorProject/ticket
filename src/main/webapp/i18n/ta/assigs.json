@@ -1,0 +1,29 @@
+
+{
+    "ticketApp": {
+        "assigs" : {
+            "home": {
+                "title": "Assigs",
+                "createLabel": "Assigs-ஐ உருவாக்கு",
+                "createOrEditLabel": "Assigs -ஐ மாற்று (அ) உருவாக்கு",
+                "search": "Search for Assigs"
+            },
+            "created": "Assigs புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+            "updated": "Assigs மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+            "deleted": "A Assigs நீக்கப்பட்டது, அடையாளம {{ param }}",
+            "delete": {
+                "question": "நீக்குவதற்கு உறுதி செய் Assigs {{ id }}?"
+            },
+            "detail": {
+                "title": "Assigs"
+            },
+            "resourceId": "Resource Id",
+            "roleId": "Role Id",
+            "taskId": "Task Id",
+            "effort": "Effort",
+            "tasks": "Tasks",
+            "resources": "Resources",
+            "roles": "Roles"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "ticketApp": {
+        "ProjectStatus" : {
+            "null": "",
+            "ACTIVE": "ACTIVE",
+            "INACTIVE": "INACTIVE",
+            "CLOSED": "CLOSED"
+        }
+    }
+}

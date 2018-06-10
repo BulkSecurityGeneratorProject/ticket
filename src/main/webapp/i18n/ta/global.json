@@ -8,6 +8,13 @@
             "entities": {
                 "main": "பொருள்கள்",
                 "ticket": "Ticket",
+                "project": "Project",
+                "tasks": "Tasks",
+                "resources": "Resources",
+                "roles": "Roles",
+                "assigs": "Assigs",
+                "file": "File",
+                "raiseTicket": "Raise Ticket",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

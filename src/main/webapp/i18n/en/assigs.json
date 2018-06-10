@@ -1,0 +1,29 @@
+
+{
+    "ticketApp": {
+        "assigs" : {
+            "home": {
+                "title": "Assigs",
+                "createLabel": "Create a new Assigs",
+                "createOrEditLabel": "Create or edit a Assigs",
+                "search": "Search for Assigs"
+            },
+            "created": "A new Assigs is created with identifier {{ param }}",
+            "updated": "A Assigs is updated with identifier {{ param }}",
+            "deleted": "A Assigs is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Assigs {{ id }}?"
+            },
+            "detail": {
+                "title": "Assigs"
+            },
+            "resourceId": "Resource Id",
+            "roleId": "Role Id",
+            "taskId": "Task Id",
+            "effort": "Effort",
+            "tasks": "Tasks",
+            "resources": "Resources",
+            "roles": "Roles"
+        }
+    }
+}

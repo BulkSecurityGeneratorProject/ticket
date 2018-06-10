@@ -1,0 +1,42 @@
+
+{
+    "ticketApp": {
+        "tasks" : {
+            "home": {
+                "title": "Tasks",
+                "createLabel": "Tasks-ஐ உருவாக்கு",
+                "createOrEditLabel": "Tasks -ஐ மாற்று (அ) உருவாக்கு",
+                "search": "Search for Tasks"
+            },
+            "created": "Tasks புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+            "updated": "Tasks மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+            "deleted": "A Tasks நீக்கப்பட்டது, அடையாளம {{ param }}",
+            "delete": {
+                "question": "நீக்குவதற்கு உறுதி செய் Tasks {{ id }}?"
+            },
+            "detail": {
+                "title": "Tasks"
+            },
+            "name": "Name",
+            "code": "Code",
+            "level": "Level",
+            "taskStatus": "Task Status",
+            "start": "Start",
+            "end": "End",
+            "duration": "Duration",
+            "startIsMilestone": "Start Is Milestone",
+            "endIsMilestone": "End Is Milestone",
+            "depends": "Depends",
+            "description": "Description",
+            "progress": "Progress",
+            "selectedRow": "Selected Row",
+            "canWrite": "Can Write",
+            "canWriteOnParent": "Can Write On Parent",
+            "roles": "Roles",
+            "resources": "Resources",
+            "document": "Document",
+            "assigs": "Assigs",
+            "project": "Project"
+        }
+    }
+}

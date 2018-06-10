@@ -1,0 +1,50 @@
+
+<div *ngIf="project">
+    <h2><span jhiTranslate="ticketApp.project.detail.title">Project</span> {{project.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ticketApp.project.name">Name</span></dt>
+        <dd>
+            <span>{{project.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.project.description">Description</span></dt>
+        <dd>
+            <span>{{project.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.project.projectStatus">Project Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ticketApp.ProjectStatus.' + project.projectStatus}}">{{project.projectStatus}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.project.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{project.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.project.endDate">End Date</span></dt>
+        <dd>
+            <span>{{project.endDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.project.owner">Owner</span></dt>
+        <dd>
+            <span>{{project.owner}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.project.assignedTo">Assigned To</span></dt>
+        <dd>
+            {{project.assignedToLogin}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'project/'+ project.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

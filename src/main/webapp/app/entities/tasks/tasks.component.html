@@ -1,0 +1,119 @@
+<div>
+    <h2>
+        <span jhiTranslate="ticketApp.tasks.home.title">Tasks</span>
+        <button class="btn btn-primary float-right jh-create-entity create-tasks" [routerLink]="['/', { outlets: { popup: ['tasks-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="ticketApp.tasks.home.createLabel">
+            Create new Tasks
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'ticketApp.tasks.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="tasks">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="ticketApp.tasks.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="code"><span jhiTranslate="ticketApp.tasks.code">Code</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="level"><span jhiTranslate="ticketApp.tasks.level">Level</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="taskStatus"><span jhiTranslate="ticketApp.tasks.taskStatus">Task Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="start"><span jhiTranslate="ticketApp.tasks.start">Start</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="end"><span jhiTranslate="ticketApp.tasks.end">End</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="duration"><span jhiTranslate="ticketApp.tasks.duration">Duration</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="startIsMilestone"><span jhiTranslate="ticketApp.tasks.startIsMilestone">Start Is Milestone</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="endIsMilestone"><span jhiTranslate="ticketApp.tasks.endIsMilestone">End Is Milestone</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="depends"><span jhiTranslate="ticketApp.tasks.depends">Depends</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span jhiTranslate="ticketApp.tasks.description">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="progress"><span jhiTranslate="ticketApp.tasks.progress">Progress</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="selectedRow"><span jhiTranslate="ticketApp.tasks.selectedRow">Selected Row</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="canWrite"><span jhiTranslate="ticketApp.tasks.canWrite">Can Write</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="canWriteOnParent"><span jhiTranslate="ticketApp.tasks.canWriteOnParent">Can Write On Parent</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="assigsId"><span jhiTranslate="ticketApp.tasks.assigs">Assigs</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="projectName"><span jhiTranslate="ticketApp.tasks.project">Project</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let tasks of tasks ;trackBy: trackId">
+                <td><a [routerLink]="['../tasks', tasks.id ]">{{tasks.id}}</a></td>
+                <td>{{tasks.name}}</td>
+                <td>{{tasks.code}}</td>
+                <td>{{tasks.level}}</td>
+                <td jhiTranslate="{{'ticketApp.TaskStatus.' + tasks.taskStatus}}">{{tasks.taskStatus}}</td>
+                <td>{{tasks.start}}</td>
+                <td>{{tasks.end}}</td>
+                <td>{{tasks.duration}}</td>
+                <td>{{tasks.startIsMilestone}}</td>
+                <td>{{tasks.endIsMilestone}}</td>
+                <td>{{tasks.depends}}</td>
+                <td>{{tasks.description}}</td>
+                <td>{{tasks.progress}}</td>
+                <td>{{tasks.selectedRow}}</td>
+                <td>{{tasks.canWrite}}</td>
+                <td>{{tasks.canWriteOnParent}}</td>
+                <td>
+                    <div *ngIf="tasks.assigsId">
+                        <a [routerLink]="['../assigs', tasks.assigsId  ]" >{{tasks.assigsId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="tasks.projectId">
+                        <a [routerLink]="['../project', tasks.projectId  ]" >{{tasks.projectName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../tasks', tasks.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'tasks/'+ tasks.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'tasks/'+ tasks.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="tasks && tasks.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

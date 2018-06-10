@@ -1,0 +1,143 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTasksLabel" jhiTranslate="ticketApp.tasks.home.createOrEditLabel">Create or edit a Tasks</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!tasks.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="tasks.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="tasks.name" maxlength="100"/>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 100 }">
+                   This field cannot be longer than 100 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.code" for="field_code">Code</label>
+            <input type="text" class="form-control" name="code" id="field_code"
+                [(ngModel)]="tasks.code" maxlength="20"/>
+            <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.code?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 20 }">
+                   This field cannot be longer than 20 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.level" for="field_level">Level</label>
+            <input type="number" class="form-control" name="level" id="field_level"
+                [(ngModel)]="tasks.level" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.taskStatus" for="field_taskStatus">Task Status</label>
+            <select class="form-control" name="taskStatus" [(ngModel)]="tasks.taskStatus" id="field_taskStatus" >
+                <option value="STATUS_ACTIVE">{{'ticketApp.TaskStatus.STATUS_ACTIVE' | translate}}</option>
+                <option value="STATUS_DONE">{{'ticketApp.TaskStatus.STATUS_DONE' | translate}}</option>
+                <option value="STATUS_FAILED">{{'ticketApp.TaskStatus.STATUS_FAILED' | translate}}</option>
+                <option value="STATUS_SUSPENDED">{{'ticketApp.TaskStatus.STATUS_SUSPENDED' | translate}}</option>
+                <option value="STATUS_UNDEFINED">{{'ticketApp.TaskStatus.STATUS_UNDEFINED' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.start" for="field_start">Start</label>
+            <input type="text" class="form-control" name="start" id="field_start"
+                [(ngModel)]="tasks.start" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.end" for="field_end">End</label>
+            <input type="text" class="form-control" name="end" id="field_end"
+                [(ngModel)]="tasks.end" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.duration" for="field_duration">Duration</label>
+            <input type="number" class="form-control" name="duration" id="field_duration"
+                [(ngModel)]="tasks.duration" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.startIsMilestone" for="field_startIsMilestone">Start Is Milestone</label>
+            <input type="checkbox" class="form-control" name="startIsMilestone" id="field_startIsMilestone"
+                [(ngModel)]="tasks.startIsMilestone" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.endIsMilestone" for="field_endIsMilestone">End Is Milestone</label>
+            <input type="checkbox" class="form-control" name="endIsMilestone" id="field_endIsMilestone"
+                [(ngModel)]="tasks.endIsMilestone" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.depends" for="field_depends">Depends</label>
+            <input type="text" class="form-control" name="depends" id="field_depends"
+                [(ngModel)]="tasks.depends" maxlength="15"/>
+            <div [hidden]="!(editForm.controls.depends?.dirty && editForm.controls.depends?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.depends?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 15 }">
+                   This field cannot be longer than 15 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="tasks.description" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.progress" for="field_progress">Progress</label>
+            <input type="number" class="form-control" name="progress" id="field_progress"
+                [(ngModel)]="tasks.progress" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.selectedRow" for="field_selectedRow">Selected Row</label>
+            <input type="number" class="form-control" name="selectedRow" id="field_selectedRow"
+                [(ngModel)]="tasks.selectedRow" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.canWrite" for="field_canWrite">Can Write</label>
+            <input type="checkbox" class="form-control" name="canWrite" id="field_canWrite"
+                [(ngModel)]="tasks.canWrite" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.canWriteOnParent" for="field_canWriteOnParent">Can Write On Parent</label>
+            <input type="checkbox" class="form-control" name="canWriteOnParent" id="field_canWriteOnParent"
+                [(ngModel)]="tasks.canWriteOnParent" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.assigs" for="field_assigs">Assigs</label>
+            <select class="form-control" id="field_assigs" name="assigs" [(ngModel)]="tasks.assigsId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="assigsOption.id" *ngFor="let assigsOption of assigs; trackBy: trackAssigsById">{{assigsOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.tasks.project" for="field_project">Project</label>
+            <select class="form-control" id="field_project" name="project" [(ngModel)]="tasks.projectId"  required>
+                <option *ngIf="!editForm.value.project" [ngValue]="null" selected></option>
+                <option [ngValue]="projectOption.id" *ngFor="let projectOption of projects; trackBy: trackProjectById">{{projectOption.name}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.project?.dirty && editForm.controls.project?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.project?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

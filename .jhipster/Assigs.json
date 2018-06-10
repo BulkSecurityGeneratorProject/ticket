@@ -1,0 +1,47 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tasks",
+            "otherEntityName": "tasks",
+            "otherEntityRelationshipName": "assigs"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "resources",
+            "otherEntityName": "resources",
+            "otherEntityRelationshipName": "assigs"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "roles",
+            "otherEntityName": "roles",
+            "otherEntityRelationshipName": "assigs"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "resourceId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "roleId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "taskId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "effort",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20180610171213",
+    "entityTableName": "assigs",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false
+}

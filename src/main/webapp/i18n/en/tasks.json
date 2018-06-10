@@ -1,0 +1,42 @@
+
+{
+    "ticketApp": {
+        "tasks" : {
+            "home": {
+                "title": "Tasks",
+                "createLabel": "Create a new Tasks",
+                "createOrEditLabel": "Create or edit a Tasks",
+                "search": "Search for Tasks"
+            },
+            "created": "A new Tasks is created with identifier {{ param }}",
+            "updated": "A Tasks is updated with identifier {{ param }}",
+            "deleted": "A Tasks is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Tasks {{ id }}?"
+            },
+            "detail": {
+                "title": "Tasks"
+            },
+            "name": "Name",
+            "code": "Code",
+            "level": "Level",
+            "taskStatus": "Task Status",
+            "start": "Start",
+            "end": "End",
+            "duration": "Duration",
+            "startIsMilestone": "Start Is Milestone",
+            "endIsMilestone": "End Is Milestone",
+            "depends": "Depends",
+            "description": "Description",
+            "progress": "Progress",
+            "selectedRow": "Selected Row",
+            "canWrite": "Can Write",
+            "canWriteOnParent": "Can Write On Parent",
+            "roles": "Roles",
+            "resources": "Resources",
+            "document": "Document",
+            "assigs": "Assigs",
+            "project": "Project"
+        }
+    }
+}

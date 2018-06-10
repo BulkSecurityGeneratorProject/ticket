@@ -1,0 +1,117 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "roles",
+            "otherEntityName": "roles",
+            "otherEntityRelationshipName": "tasks"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "resources",
+            "otherEntityName": "resources",
+            "otherEntityRelationshipName": "tasks"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "document",
+            "otherEntityName": "file",
+            "otherEntityRelationshipName": "tasks"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "assigs",
+            "otherEntityName": "assigs",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "project",
+            "otherEntityName": "project",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "level",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "taskStatus",
+            "fieldType": "TaskStatus",
+            "fieldValues": "STATUS_ACTIVE,STATUS_DONE,STATUS_FAILED,STATUS_SUSPENDED,STATUS_UNDEFINED"
+        },
+        {
+            "fieldName": "start",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "end",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "duration",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "startIsMilestone",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "endIsMilestone",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "depends",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 15
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "progress",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "selectedRow",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "canWrite",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "canWriteOnParent",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20180610171210",
+    "entityTableName": "tasks",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false
+}

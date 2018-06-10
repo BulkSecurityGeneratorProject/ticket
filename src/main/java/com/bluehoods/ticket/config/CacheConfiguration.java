@@ -39,6 +39,22 @@ public class CacheConfiguration {
             cm.createCache(com.bluehoods.ticket.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.bluehoods.ticket.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.bluehoods.ticket.domain.Ticket.class.getName(), jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.Project.class.getName(), jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.Project.class.getName() + ".tasks", jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.Project.class.getName() + ".documents", jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.Project.class.getName() + ".issueTickets", jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.Tasks.class.getName(), jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.Tasks.class.getName() + ".roles", jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.Tasks.class.getName() + ".resources", jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.Tasks.class.getName() + ".documents", jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.Resources.class.getName(), jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.Roles.class.getName(), jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.Assigs.class.getName(), jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.Assigs.class.getName() + ".tasks", jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.Assigs.class.getName() + ".resources", jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.Assigs.class.getName() + ".roles", jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.File.class.getName(), jcacheConfiguration);
+            cm.createCache(com.bluehoods.ticket.domain.RaiseTicket.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -1,0 +1,94 @@
+
+<div *ngIf="tasks">
+    <h2><span jhiTranslate="ticketApp.tasks.detail.title">Tasks</span> {{tasks.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ticketApp.tasks.name">Name</span></dt>
+        <dd>
+            <span>{{tasks.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.code">Code</span></dt>
+        <dd>
+            <span>{{tasks.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.level">Level</span></dt>
+        <dd>
+            <span>{{tasks.level}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.taskStatus">Task Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ticketApp.TaskStatus.' + tasks.taskStatus}}">{{tasks.taskStatus}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.start">Start</span></dt>
+        <dd>
+            <span>{{tasks.start}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.end">End</span></dt>
+        <dd>
+            <span>{{tasks.end}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.duration">Duration</span></dt>
+        <dd>
+            <span>{{tasks.duration}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.startIsMilestone">Start Is Milestone</span></dt>
+        <dd>
+            <span>{{tasks.startIsMilestone}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.endIsMilestone">End Is Milestone</span></dt>
+        <dd>
+            <span>{{tasks.endIsMilestone}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.depends">Depends</span></dt>
+        <dd>
+            <span>{{tasks.depends}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.description">Description</span></dt>
+        <dd>
+            <span>{{tasks.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.progress">Progress</span></dt>
+        <dd>
+            <span>{{tasks.progress}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.selectedRow">Selected Row</span></dt>
+        <dd>
+            <span>{{tasks.selectedRow}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.canWrite">Can Write</span></dt>
+        <dd>
+            <span>{{tasks.canWrite}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.canWriteOnParent">Can Write On Parent</span></dt>
+        <dd>
+            <span>{{tasks.canWriteOnParent}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.assigs">Assigs</span></dt>
+        <dd>
+            <div *ngIf="tasks.assigsId">
+                <a [routerLink]="['/assigs', tasks.assigsId]">{{tasks.assigsId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.tasks.project">Project</span></dt>
+        <dd>
+            <div *ngIf="tasks.projectId">
+                <a [routerLink]="['/project', tasks.projectId]">{{tasks.projectName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'tasks/'+ tasks.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

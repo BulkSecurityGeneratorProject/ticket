@@ -1,0 +1,26 @@
+
+{
+    "ticketApp": {
+        "resources" : {
+            "home": {
+                "title": "Resources",
+                "createLabel": "Resources-ஐ உருவாக்கு",
+                "createOrEditLabel": "Resources -ஐ மாற்று (அ) உருவாக்கு",
+                "search": "Search for Resources"
+            },
+            "created": "Resources புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+            "updated": "Resources மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+            "deleted": "A Resources நீக்கப்பட்டது, அடையாளம {{ param }}",
+            "delete": {
+                "question": "நீக்குவதற்கு உறுதி செய் Resources {{ id }}?"
+            },
+            "detail": {
+                "title": "Resources"
+            },
+            "name": "Name",
+            "user": "User",
+            "assigs": "Assigs",
+            "tasks": "Tasks"
+        }
+    }
+}

@@ -1,0 +1,71 @@
+
+<div *ngIf="file">
+    <h2><span jhiTranslate="ticketApp.file.detail.title">File</span> {{file.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ticketApp.file.documentName">Document Name</span></dt>
+        <dd>
+            <span>{{file.documentName}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.file.documentOneDetails">Document One Details</span></dt>
+        <dd>
+            <span>{{file.documentOneDetails}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.file.documentOne">Document One</span></dt>
+        <dd>
+            <div *ngIf="file.documentOne">
+                <a (click)="openFile(file.documentOneContentType, file.documentOne)" jhiTranslate="entity.action.open">open</a>
+                {{file.documentOneContentType}}, {{byteSize(file.documentOne)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.file.documentTwoDetails">Document Two Details</span></dt>
+        <dd>
+            <span>{{file.documentTwoDetails}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.file.documentTwo">Document Two</span></dt>
+        <dd>
+            <div *ngIf="file.documentTwo">
+                <a (click)="openFile(file.documentTwoContentType, file.documentTwo)" jhiTranslate="entity.action.open">open</a>
+                {{file.documentTwoContentType}}, {{byteSize(file.documentTwo)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.file.documentThreeDetails">Document Three Details</span></dt>
+        <dd>
+            <span>{{file.documentThreeDetails}}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.file.documentThree">Document Three</span></dt>
+        <dd>
+            <div *ngIf="file.documentThree">
+                <a (click)="openFile(file.documentThreeContentType, file.documentThree)" jhiTranslate="entity.action.open">open</a>
+                {{file.documentThreeContentType}}, {{byteSize(file.documentThree)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.file.project">Project</span></dt>
+        <dd>
+            <div *ngIf="file.projectId">
+                <a [routerLink]="['/project', file.projectId]">{{file.projectName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.file.tasks">Tasks</span></dt>
+        <dd>
+            <div *ngIf="file.tasksId">
+                <a [routerLink]="['/tasks', file.tasksId]">{{file.tasksId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'file/'+ file.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

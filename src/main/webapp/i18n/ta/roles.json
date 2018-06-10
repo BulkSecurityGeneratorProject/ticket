@@ -1,0 +1,25 @@
+
+{
+    "ticketApp": {
+        "roles" : {
+            "home": {
+                "title": "Roles",
+                "createLabel": "Roles-ஐ உருவாக்கு",
+                "createOrEditLabel": "Roles -ஐ மாற்று (அ) உருவாக்கு",
+                "search": "Search for Roles"
+            },
+            "created": "Roles புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+            "updated": "Roles மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+            "deleted": "A Roles நீக்கப்பட்டது, அடையாளம {{ param }}",
+            "delete": {
+                "question": "நீக்குவதற்கு உறுதி செய் Roles {{ id }}?"
+            },
+            "detail": {
+                "title": "Roles"
+            },
+            "name": "Name",
+            "assigs": "Assigs",
+            "tasks": "Tasks"
+        }
+    }
+}

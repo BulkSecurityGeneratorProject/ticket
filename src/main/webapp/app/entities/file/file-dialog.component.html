@@ -1,0 +1,113 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myFileLabel" jhiTranslate="ticketApp.file.home.createOrEditLabel">Create or edit a File</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!file.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="file.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.file.documentName" for="field_documentName">Document Name</label>
+            <input type="text" class="form-control" name="documentName" id="field_documentName"
+                [(ngModel)]="file.documentName" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.file.documentOneDetails" for="field_documentOneDetails">Document One Details</label>
+            <input type="text" class="form-control" name="documentOneDetails" id="field_documentOneDetails"
+                [(ngModel)]="file.documentOneDetails" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.file.documentOne" for="field_documentOne">Document One</label>
+            <div>
+                <div *ngIf="file.documentOne" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(file.documentOneContentType, file.documentOne)" jhiTranslate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{file.documentOneContentType}}, {{byteSize(file.documentOne)}}</span>
+                    <button type="button" (click)="file.documentOne=null;file.documentOneContentType=null;"
+                            class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_documentOne" (change)="setFileData($event, file, 'documentOne', false)" jhiTranslate="entity.action.addblob"/>
+            </div>
+            <input type="hidden" class="form-control" name="documentOne" id="field_documentOne"
+                [(ngModel)]="file.documentOne" />
+            <input type="hidden" class="form-control" name="documentOneContentType" id="field_documentOneContentType"
+                [(ngModel)]="file.documentOneContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.file.documentTwoDetails" for="field_documentTwoDetails">Document Two Details</label>
+            <input type="text" class="form-control" name="documentTwoDetails" id="field_documentTwoDetails"
+                [(ngModel)]="file.documentTwoDetails" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.file.documentTwo" for="field_documentTwo">Document Two</label>
+            <div>
+                <div *ngIf="file.documentTwo" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(file.documentTwoContentType, file.documentTwo)" jhiTranslate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{file.documentTwoContentType}}, {{byteSize(file.documentTwo)}}</span>
+                    <button type="button" (click)="file.documentTwo=null;file.documentTwoContentType=null;"
+                            class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_documentTwo" (change)="setFileData($event, file, 'documentTwo', false)" jhiTranslate="entity.action.addblob"/>
+            </div>
+            <input type="hidden" class="form-control" name="documentTwo" id="field_documentTwo"
+                [(ngModel)]="file.documentTwo" />
+            <input type="hidden" class="form-control" name="documentTwoContentType" id="field_documentTwoContentType"
+                [(ngModel)]="file.documentTwoContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.file.documentThreeDetails" for="field_documentThreeDetails">Document Three Details</label>
+            <input type="text" class="form-control" name="documentThreeDetails" id="field_documentThreeDetails"
+                [(ngModel)]="file.documentThreeDetails" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.file.documentThree" for="field_documentThree">Document Three</label>
+            <div>
+                <div *ngIf="file.documentThree" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(file.documentThreeContentType, file.documentThree)" jhiTranslate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{file.documentThreeContentType}}, {{byteSize(file.documentThree)}}</span>
+                    <button type="button" (click)="file.documentThree=null;file.documentThreeContentType=null;"
+                            class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_documentThree" (change)="setFileData($event, file, 'documentThree', false)" jhiTranslate="entity.action.addblob"/>
+            </div>
+            <input type="hidden" class="form-control" name="documentThree" id="field_documentThree"
+                [(ngModel)]="file.documentThree" />
+            <input type="hidden" class="form-control" name="documentThreeContentType" id="field_documentThreeContentType"
+                [(ngModel)]="file.documentThreeContentType" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.file.project" for="field_project">Project</label>
+            <select class="form-control" id="field_project" name="project" [(ngModel)]="file.projectId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="projectOption.id" *ngFor="let projectOption of projects; trackBy: trackProjectById">{{projectOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ticketApp.file.tasks" for="field_tasks">Tasks</label>
+            <select class="form-control" id="field_tasks" name="tasks" [(ngModel)]="file.tasksId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="tasksOption.id" *ngFor="let tasksOption of tasks; trackBy: trackTasksById">{{tasksOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
