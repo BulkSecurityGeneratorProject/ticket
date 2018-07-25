@@ -19,7 +19,7 @@ qualityCertificateScannedCopy Blob,
 assignedBy String,
 approvedBy String,
 remarks String
-}
+} 
 enum State{
 ACTIVE,INACTIVE
 }
